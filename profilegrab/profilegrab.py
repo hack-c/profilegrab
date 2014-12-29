@@ -77,7 +77,7 @@ class ProfileGrab(object):
 			if isinstance(arg, str):
 				if arg.startswith('@'):
 					text['twitter:' + arg] = scrapers.get_twitter_text(arg, self.twitter)
-				else
+				else:
 					text['facebook:' + arg] = scrapers.get_facebook_text(arg, self.facebook)
 			if isinstance(arg, int):
 				raise TypeError("When specifying a numeric id, please use a keyword argument, e.g. facebook_id=1287364581")
