@@ -34,7 +34,7 @@ class BaseProfileGrab(object):
         self.twitter   = twitter.Api(**settings.twitter_api_credentials)
 
 
-class ProfileGrab(object):
+class ProfileGrab(BaseProfileGrab):
 	"""
 	Class: ProfileGrab
 	==================

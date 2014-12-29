@@ -11,6 +11,10 @@ deletechars        = ''.join([chr(c) for c in range(128,256)])
 allowed_ids        = ['facebook_id', 'twitter_id']
 
 
+#######################################################################
+#####################[ insert your API keys here ]#####################
+#######################################################################
+
 twitter_api_credentials = dict(
 	consumer_key="t1esVAor6jhvZWUcVaXD2ygg5",
 	consumer_secret="lVS7GOMhqd3dotBpFS0bSpbBX6MVN36xreA23ETmUBsSY0BBf1",
