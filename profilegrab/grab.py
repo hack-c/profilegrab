@@ -16,7 +16,9 @@ December 2014
 import twitter
 import pattern
 
-from profilegrab import scrapers
+from profilegrab.scrapers import get_twitter_text
+from profilegrab.scrapers import get_facebook_text
+from profilegrab.scrapers import scrape_from_id
 
 
 class BaseProfileGrab(object):
@@ -76,9 +78,9 @@ class ProfileGrab(BaseProfileGrab):
 		for arg in args:
 			if isinstance(arg, str):
 				if arg.startswith('@'):
-					text['twitter:' + arg] = scrapers.get_twitter_text(arg, self.twitter)
+					text['twitter:' + arg] = get_twitter_text(arg, self.twitter)
 				else:
-					text['facebook:' + arg] = scrapers.get_facebook_text(arg, self.facebook)
+					text['facebook:' + arg] = get_facebook_text(arg, self.facebook)
 			if isinstance(arg, int):
 				raise TypeError("When specifying a numeric id, please use a keyword argument, e.g. facebook_id=1287364581")
 				
@@ -92,9 +94,9 @@ class ProfileGrab(BaseProfileGrab):
 
 		for site, arg in kwargs.items():
 			if isinstance(arg, str):
-				text[site + ":" + arg] = scrapers.scrape_from_id(site, arg, fb=self.facebook, tw=self.twitter)
+				text[site + ":" + arg] = scrape_from_id(site, arg, fb=self.facebook, tw=self.twitter)
 			elif isinstance(arg, int):
-				text[site + ":" + str(arg)] = scrapers.scrape_from_id(site, arg, fb=self.facebook, tw=self.twitter)
+				text[site + ":" + str(arg)] = scrape_from_id(site, arg, fb=self.facebook, tw=self.twitter)
 			elif isinstance(arg, list):
 				for uid in arg:
 					text.update(self.grab(**{site:uid}))

@@ -1,1 +1,1 @@
-from profilegrab.profilegrab import ProfileGrab
+from profilegrab.grab import ProfileGrab

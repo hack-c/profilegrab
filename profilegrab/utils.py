@@ -13,7 +13,7 @@ charlie@205consulting.com
 December 2014
 ###############################
 """
-from neoquery import settings
+from profilegrab import settings
 
 
 def print_status(stage, status, verbose=True):
