@@ -9,8 +9,9 @@ __________                _____.__.__           ________            ___.
 by Charlie Hack  
 December 2014
 
-Very simple social media scraper for Python. Supply one or more social media uris, get back
-blocks of text.
+Very simple social media scraper for Python. Supply one or more social media uris, get back blocks of text.  
+
+I wrote this little package because all the scraper libraries I found were either way more generalized than what I was looking for, or involved lots of boilerplate. I just wanted to point the scraper to somebody's profile and get the contentful text contained there. Enter ProfileGrab!
 
 Currently ProfileGrab supports Facebook and Twitter.
   
