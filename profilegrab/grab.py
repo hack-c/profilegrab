@@ -33,7 +33,7 @@ class BaseProfileGrab(object):
     Instantiates API connections.
     """
     def __init__(self):
-        self.facebook  = pattern.Facebook(license=settings.facebook_license)
+        self.facebook  = pattern.web.Facebook(license=settings.facebook_license)
         self.twitter   = twitter.Api(**settings.twitter_api_credentials)
 
 
@@ -71,6 +71,7 @@ class ProfileGrab(BaseProfileGrab):
         Disambiguates the uids and calls the appropriate scraper method.
         Specify twitter screen names with a leading '@' character.
         Numeric IDs should be specified as keyword arguments.
+            - returns: dict, in the format {"twitter:@c_hack":u"Check out this link I found! [...]"} 
         """
         text = {}
 
@@ -82,7 +83,7 @@ class ProfileGrab(BaseProfileGrab):
                     text['twitter:' + arg] = get_twitter_text(arg, self.twitter)
                 else:
                     text['facebook:' + arg] = get_facebook_text(arg, self.facebook)
-            if isinstance(arg, int):
+            elif isinstance(arg, int):
                 raise TypeError("When specifying a numeric id, please use a keyword argument, e.g. facebook_id=1287364581")
                 
             elif isinstance(arg, list):

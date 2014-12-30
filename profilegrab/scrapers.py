@@ -16,10 +16,12 @@ December 2014
 ###############################
 """
 import time
+import requests
 from pattern.web import Facebook, NEWS, COMMENTS, LIKES, URLTimeout, URLError
 from twitter.error import TwitterError
 
 from profilegrab.utils import print_status
+from profilegrab.utils import remove_nonascii
 import settings
 
 def get_twitter_text(uri, api):
