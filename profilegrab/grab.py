@@ -58,7 +58,7 @@ class ProfileGrab(BaseProfileGrab):
     In [5]: fb_from_id = pg.grab(facebook_id="100000823926890")
     In [6]: tw_from_id = pg.grab(twitter_id="106537958")
     In [7]: multiple = pg.grab("charlie.hack", "KevinDurant", "@drose")
-    in [8]: multiple_id = pg.grab(facebook_id=["100000823926890", "81781281654"])
+    In [8]: multiple_id = pg.grab(facebook_id=["100000823926890", "81781281654"])
 
     """
     def __init__(self):
