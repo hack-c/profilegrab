@@ -19,6 +19,7 @@ import pattern
 from profilegrab.scrapers import get_twitter_text
 from profilegrab.scrapers import get_facebook_text
 from profilegrab.scrapers import scrape_from_id
+from profilegrab import settings
 
 
 class BaseProfileGrab(object):
