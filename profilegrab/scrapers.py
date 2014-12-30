@@ -77,7 +77,7 @@ def get_facebook_text(uri, api):
         try:
             for post in api.search(fid, type=NEWS, count=100):
                 post_text = []
-                if not ("shared" in post.text or "likes" in post.text or "updated" in post.text):  # not contentful. 
+                if not any([x in post.text for x in settings.useless_keywords]):  # i.e. `if the post isn't "Charlie Hack likes a photo":`
                     post_text.append(unicode(remove_nonascii(post.text)))
                 if post.comments > 0:
                     post_text.extend([unicode(remove_nonascii(r.text)) for r in api.search(post.id, type=COMMENTS)])

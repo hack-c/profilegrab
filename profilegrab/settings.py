@@ -2,8 +2,7 @@ import string
 import nltk
 
 
-min_len            = 8
-social_media       = ['facebook', 'lnkd.in', 'linkedin', 'twitter']
+useless_keywords   = ["shared", "likes", "updated", "tagged in", "posted a link"]
 punctuation_table  = {ord(c): None for c in string.punctuation}
 stopwords          = nltk.corpus.stopwords.words('english')
 nonascii_table     = {i: None for i in range(128,1000)}
