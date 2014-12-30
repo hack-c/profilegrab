@@ -4,9 +4,9 @@ Module: scrapers.py
 
 Description:
 ------------
-    	
+        
     Contains methods for scraping text from Facebook and Twitter.
-	Uses pattern and twitter libraries.
+    Uses pattern and twitter libraries.
 
 
 ###############################
@@ -20,7 +20,7 @@ from pattern.web import Facebook, NEWS, COMMENTS, LIKES, URLTimeout, URLError
 from twitter.error import TwitterError
 
 from profilegrab.utils import print_status
-from profilegrab import settings
+import settings
 
 def get_twitter_text(uri, api):
     """
@@ -34,12 +34,12 @@ def get_twitter_text(uri, api):
     while not fetched:
         try:
             if isinstance(uri, str):
-            	if all([c.isdigit() for c in uri]):
-            		user = api.GetUser(user_id=uri)
-            	else:
-            		user = api.GetUser(screen_name=uri)
+                if all([c.isdigit() for c in uri]):
+                    user = api.GetUser(user_id=uri)
+                else:
+                    user = api.GetUser(screen_name=uri)
             elif isinstance(uri, int):
-            	user = api.GetUser(user_id=uri)
+                user = api.GetUser(user_id=uri)
 
             timeline   = api.GetUserTimeline(user_id=user.id)
             user_text  = ' '.join([unicode(remove_nonascii(user.description)), ' '.join([unicode(remove_nonascii(s.text)) for s in timeline])])
@@ -61,12 +61,12 @@ def get_facebook_text(uri, api):
         - returns: string
     """
     if isinstance(uri, str):
-      	if not all([c.isdigit() for c in uri]):
-      		fid = requests.get(url='http://graph.facebook.com/' + uri).json().get('id')  # get the Facebook id from graph
-       	else:
-      		fid = uri
+        if not all([c.isdigit() for c in uri]):
+            fid = requests.get(url='http://graph.facebook.com/' + uri).json().get('id')  # get the Facebook id from graph
+        else:
+            fid = uri
     elif isinstance(uri, int):
-       	fid = uri
+        fid = uri
 
     fetched = False
 
@@ -102,13 +102,13 @@ def get_facebook_text(uri, api):
 
 
 def scrape_from_id(site, uid, fb=None, tw=None):
-	"""
-	convenience method to delegate to the correct scraper
-	"""
-	if site == "facebook_id":
-		return get_facebook_text(uid, fb)
-	elif site == "twitter_id":
-		return get_twitter_text(uid, tw)
+    """
+    convenience method to delegate to the correct scraper
+    """
+    if site == "facebook_id":
+        return get_facebook_text(uid, fb)
+    elif site == "twitter_id":
+        return get_twitter_text(uid, tw)
 
 
 

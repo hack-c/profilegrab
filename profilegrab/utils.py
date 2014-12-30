@@ -13,7 +13,7 @@ charlie@205consulting.com
 December 2014
 ###############################
 """
-from profilegrab import settings
+import settings
 
 
 def print_status(stage, status, verbose=True):
