@@ -35,7 +35,7 @@ def get_twitter_text(uri, api):
 
     while not fetched:
         try:
-            if isinstance(uri, str) or isinstance(uri, unicode):
+            if isinstance(uri, unicode):
                 if all([c.isdigit() for c in uri]):
                     user = api.GetUser(user_id=uri)
                 else:
@@ -62,7 +62,7 @@ def get_facebook_text(uri, api):
     if nothing interesting is returned, return empty string
         - returns: string
     """
-    if isinstance(uri, str) or isinstance(uri, unicode):
+    if isinstance(uri, unicode):
         if not all([c.isdigit() for c in uri]):
             fid = requests.get(url='http://graph.facebook.com/' + uri).json().get('id')  # get the Facebook id from graph
         else:

@@ -78,7 +78,9 @@ class ProfileGrab(BaseProfileGrab):
         assert set(kwargs.keys()).issubset(settings.allowed_ids), "Unrecognized keyword argument. Please supply one of: %s" % str(settings.allowed_ids)
 
         for arg in args:
-            if isinstance(arg, str) or isinstance(arg, unicode):
+            if isinstance(arg, str):
+                arg = unicode(arg) 
+            if isinstance(arg, unicode):
                 if arg.startswith('@'):
                     text['twitter:' + arg] = get_twitter_text(arg, self.twitter)
                 else:
@@ -87,7 +89,7 @@ class ProfileGrab(BaseProfileGrab):
                 raise TypeError("When specifying a numeric id, please use a keyword argument, e.g. facebook_id=1287364581")
                 
             elif isinstance(arg, list):
-                assert all([isinstance(x, str) for x in arg]), "Unrecognized input. Please supply a uri or list of uris."
+                assert all([isinstance(x, str) or isinstance(x, unicode) for x in arg]), "Unrecognized input. Please supply a uri or list of uris."
                 for uri in list:
                     text.update(self.grab(uri))
 
@@ -96,6 +98,8 @@ class ProfileGrab(BaseProfileGrab):
 
         for site, arg in kwargs.items():
             if isinstance(arg, str):
+                arg = unicode(arg)
+            if isinstance(arg, unicode):
                 text[site + ":" + arg] = scrape_from_id(site, arg, fb=self.facebook, tw=self.twitter)
             elif isinstance(arg, int):
                 text[site + ":" + str(arg)] = scrape_from_id(site, arg, fb=self.facebook, tw=self.twitter)
