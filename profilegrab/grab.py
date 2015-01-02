@@ -78,7 +78,7 @@ class ProfileGrab(BaseProfileGrab):
         assert set(kwargs.keys()).issubset(settings.allowed_ids), "Unrecognized keyword argument. Please supply one of: %s" % str(settings.allowed_ids)
 
         for arg in args:
-            if isinstance(arg, str):
+            if isinstance(arg, str) or isinstance(arg, unicode):
                 if arg.startswith('@'):
                     text['twitter:' + arg] = get_twitter_text(arg, self.twitter)
                 else:
