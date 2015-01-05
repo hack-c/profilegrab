@@ -92,6 +92,8 @@ class ProfileGrab(BaseProfileGrab):
                 assert all([isinstance(x, str) or isinstance(x, unicode) for x in arg]), "Unrecognized input. Please supply a uri or list of uris."
                 for uri in list:
                     text.update(self.grab(uri))
+            elif arg is None:
+                continue
 
             else:
                 raise TypeError("Unrecognized input type: %s" % type(arg))
@@ -106,6 +108,8 @@ class ProfileGrab(BaseProfileGrab):
             elif isinstance(arg, list):
                 for uid in arg:
                     text.update(self.grab(**{site:uid}))
+            elif arg is None:
+                continue
             else:
                 raise TypeError("Unrecognized input type: %s" % type(arg))
 

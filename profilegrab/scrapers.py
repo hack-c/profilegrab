@@ -88,7 +88,7 @@ def get_facebook_text(uri, api):
 
         except URLTimeout as e:
             print(e)
-            time.sleep(2)
+            time.sleep(settings.sleep_time)
         except URLError as e:
             print(e)
             break
