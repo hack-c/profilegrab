@@ -32,9 +32,9 @@ class BaseProfileGrab(object):
     Contains base properties of ProfileGrab. 
     Instantiates API connections.
     """
-    def __init__(self):
-        self.facebook  = pattern.web.Facebook(license=settings.facebook_license)
-        self.twitter   = twitter.Api(**settings.twitter_api_credentials)
+    def __init__(self, **kwargs):
+        self.facebook  = pattern.web.Facebook(license=kwargs.get(facebook_license))
+        self.twitter   = twitter.Api(**kwargs.get(twitter_api_credentials))
 
 
 class ProfileGrab(BaseProfileGrab):
