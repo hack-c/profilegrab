@@ -19,7 +19,7 @@ import pattern
 from profilegrab.scrapers import get_twitter_text
 from profilegrab.scrapers import get_facebook_text
 from profilegrab.scrapers import scrape_from_id
-import settings
+from profilegrab import settings
 
 
 class BaseProfileGrab(object):
@@ -31,10 +31,19 @@ class BaseProfileGrab(object):
     ------------
     Contains base properties of ProfileGrab. 
     Instantiates API connections.
+
+    Pass API credentials to the constructor:
+
+    **{'twitter_api_credentials':
+        {consumer_key: "VaXD2ygg5",
+        consumer_secret: "UBsSY0BBf1",
+        access_token_key: "WFyKeun5Ls",
+        access_token_secret: "zMOANZlRzT"},
+    facebook_license: "AAAiooZB1IZD"}
     """
     def __init__(self, **kwargs):
-        self.facebook  = pattern.web.Facebook(license=kwargs.get(facebook_license))
-        self.twitter   = twitter.Api(**kwargs.get(twitter_api_credentials))
+        self.facebook  = pattern.web.Facebook(license=kwargs.get('facebook_license'))
+        self.twitter   = twitter.Api(**kwargs.get('twitter_api_credentials'))
 
 
 class ProfileGrab(BaseProfileGrab):
@@ -61,9 +70,6 @@ class ProfileGrab(BaseProfileGrab):
     In [8]: multiple_id = pg.grab(facebook_id=["100000823926890", "81781281654"])
 
     """
-    def __init__(self):
-        super(ProfileGrab, self).__init__()
-
 
     def grab(self, *args, **kwargs):
         """

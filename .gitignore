@@ -2,3 +2,4 @@ build/*
 dist/*
 profilegrab.egg-info/*
 *.pyc
+credentials.yaml

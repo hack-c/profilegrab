@@ -36,18 +36,18 @@ def get_twitter_text(uri, api):
     while not fetched:
         try:
             if isinstance(uri, unicode):
-                if all([c.isdigit() for c in uri]):
+                if all([c.isdigit() for c in uri]):  # numerical ID
                     user = api.GetUser(user_id=uri)
                 else:
-                    user = api.GetUser(screen_name=uri)
+                    user = api.GetUser(screen_name=uri)  # either @name or name
             elif isinstance(uri, int):
-                user = api.GetUser(user_id=uri)
+                user = api.GetUser(user_id=uri)  # numerical id
 
             timeline   = api.GetUserTimeline(user_id=user.id)
             user_text  = ' '.join([unicode(remove_nonascii(user.description)), ' '.join([unicode(remove_nonascii(s.text)) for s in timeline])])
             fetched    = True
         except TwitterError as e:
-            print(e)
+            print('TwitterError:', e)
             return user_text
 
     assert isinstance(user_text, unicode), "twitter {user_text} isn't unicode, it's {type}.".format(user_text=user_text, type=type(user_text))
@@ -66,7 +66,7 @@ def get_facebook_text(uri, api):
         if not all([c.isdigit() for c in uri]):
             fid = requests.get(url='http://graph.facebook.com/' + uri).json().get('id')  # get the Facebook id from graph
         else:
-            fid = uri
+            fid = uri  # numeric id
     elif isinstance(uri, int):
         fid = uri
 
@@ -87,10 +87,10 @@ def get_facebook_text(uri, api):
             fetched    = True
 
         except URLTimeout as e:
-            print(e)
+            print('URLTimeout:', e)
             time.sleep(settings.sleep_time)
         except URLError as e:
-            print(e)
+            print('URLError:', e)
             break
 
     if isinstance(user_text, list):
