@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
         name='profilegrab',
-        version='0.1.1',
+        version='0.1.2',
         author="Charlie Hack",
         author_email="charlie@205consulting.com",
         url="https://github.com/hack-c/profilegrab",
@@ -13,6 +13,7 @@ setup(
         install_requires=[
             'pattern',
             'python-twitter',
+            'mock',
         ]
 )
 
