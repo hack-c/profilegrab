@@ -120,6 +120,8 @@ class ProfileGrab(BaseProfileGrab):
             else:
                 raise TypeError("Unrecognized input type: %s" % type(arg))
 
+        text = dict((k,'') if v is None else (k,v) for k,v in text.iteritems())  # replace None values with empty string
+
         return text
 
 

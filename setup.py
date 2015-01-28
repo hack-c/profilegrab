@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
         name='profilegrab',
-        version='0.1.2',
+        version='0.1.3',
         author="Charlie Hack",
         author_email="charlie@205consulting.com",
         url="https://github.com/hack-c/profilegrab",
