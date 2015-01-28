@@ -105,6 +105,7 @@ class ProfileGrab(BaseProfileGrab):
                 raise TypeError("Unrecognized input type: %s" % type(arg))
 
         for site, arg in kwargs.items():
+            site = site.strip("_id")  # output is always 'facebook':'something' or 'twitter':'something'
             if isinstance(arg, str):
                 arg = unicode(arg)
             if isinstance(arg, unicode):
